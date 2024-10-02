@@ -31,7 +31,7 @@ jobs:
           buildozer -v android debug  # Build the APK
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Update to the latest version
         with:
           name: MyAppAPK
           path: path/to/your/project/bin/*.apk  # Adjust the path to where the APK will be saved
