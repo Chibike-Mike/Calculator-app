@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated action
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4  # Updated action
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build APK
-        run: ./gradlew assembleDebug --stacktrace  # This will give detailed error logs
+        run: ./gradlew assembleDebug --stacktrace  # Added --stacktrace for detailed error logs
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
