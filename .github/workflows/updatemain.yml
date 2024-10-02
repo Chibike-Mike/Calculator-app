@@ -1,4 +1,4 @@
-name: Build APK
+name: Build Calculator APK
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # You can specify the version needed for your project
+          python-version: '3.8'  # Specify the version needed for your project
 
       - name: Install Buildozer and dependencies
         run: |
@@ -27,11 +27,11 @@ jobs:
 
       - name: Build APK
         run: |
-          cd path/to/your/project  # Navigate to your project directory
+          cd Calculator-app  # Navigate to your project directory
           buildozer -v android debug  # Build the APK
 
       - name: Upload APK
         uses: actions/upload-artifact@v3  # Update to the latest version
         with:
-          name: MyAppAPK
-          path: path/to/your/project/bin/*.apk  # Adjust the path to where the APK will be saved
+          name: CalculatorAppAPK
+          path: bin/*.apk  # Adjust the path to where the APK will be saved, relative to the project root
