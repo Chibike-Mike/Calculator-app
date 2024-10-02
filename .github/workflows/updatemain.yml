@@ -3,10 +3,7 @@ name: Build APK
 on:
   push:
     branches:
-      - main  # Change this if your main branch is different
-  pull_request:
-    branches:
-      - main
+      - main  # or the branch you want to use for building
 
 jobs:
   build:
@@ -19,21 +16,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # Specify your Python version
+          python-version: '3.8'  # You can specify the version needed for your project
 
       - name: Install Buildozer and dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            python3-pip \
-            python3-dev \
-            build-essential \
-            git \
-            zlib1g-dev \
-            libffi-dev \
-            libssl-dev
-          pip install --upgrade buildozer
+          sudo apt-get install -y python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+          pip install --upgrade pip
+          pip install buildozer cython  # Install Buildozer and Cython
 
       - name: Build APK
         run: |
-          buildozer -v android debug
+          cd path/to/your/project  # Navigate to your project directory
+          buildozer -v android debug  # Build the APK
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: MyAppAPK
+          path: path/to/your/project/bin/*.apk  # Adjust the path to where the APK will be saved
